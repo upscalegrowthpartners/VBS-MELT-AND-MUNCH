@@ -1386,6 +1386,22 @@
 
       document.querySelectorAll("#contact, .social-section, footer").forEach(el => observer.observe(el));
     }
+        /* Load food photos */
+    document.querySelectorAll(".img-slot[data-file]").forEach(slot => {
+      const image = document.createElement("img");
+      image.src = slot.dataset.file;
+      image.alt = "VBS Melt & Munch food photo";
+      image.loading = "lazy";
+      image.style.width = "100%";
+      image.style.height = "100%";
+      image.style.objectFit = "cover";
+
+      image.onerror = () => {
+        console.error("Image not found:", image.src);
+      };
+
+      slot.replaceChildren(image);
+    });
   </script>
 
 </body>
